@@ -7,7 +7,10 @@ import { PowerLossTimeline } from '@/components/PowerLossTimeline';
 import { LoadValidation } from '@/components/LoadValidation';
 import { AnomalyDetection } from '@/components/AnomalyDetection';
 import { DailyEnergySummary } from '@/components/DailyEnergySummary';
+import { ApplianceConnection } from '@/components/ApplianceConnection';
+import { BehaviorLearning } from '@/components/BehaviorLearning';
 import { useSimulatedData } from '@/hooks/useSimulatedData';
+import { useBehaviorLearning } from '@/hooks/useBehaviorLearning';
 // import { useMqtt } from '@/hooks/useMqtt'; // Uncomment for real MQTT connection
 
 const Index = () => {
@@ -21,6 +24,9 @@ const Index = () => {
     connectionError,
   } = useSimulatedData();
   // } = useMqtt(); // Uncomment for real MQTT connection
+
+  // Unsupervised ML for behavior learning
+  const learningResult = useBehaviorLearning(dataHistory);
 
   // Calculate power loss duration
   const powerLossEvents = dataHistory.filter(
@@ -118,9 +124,15 @@ const Index = () => {
       </section>
 
       {/* Status Cards */}
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+        <ApplianceConnection currentData={currentData} isSystemOn={isSystemOn} />
         <LoadValidation data={currentData} />
         <AnomalyDetection data={dataHistory} currentData={currentData} />
+      </section>
+
+      {/* ML Behavior Learning */}
+      <section className="mb-8">
+        <BehaviorLearning learningResult={learningResult} />
       </section>
 
       {/* Charts */}
@@ -130,7 +142,7 @@ const Index = () => {
           dataKey="voltage"
           title="Voltage vs Time"
           unit="V"
-          color="hsl(195 100% 50%)"
+          color="hsl(220 90% 56%)"
           validRange={{ min: 230, max: 240 }}
         />
         <EnergyChart
@@ -138,7 +150,7 @@ const Index = () => {
           dataKey="current"
           title="Current vs Time"
           unit="A"
-          color="hsl(145 80% 45%)"
+          color="hsl(145 65% 42%)"
           validRange={{ min: 2, max: 3 }}
         />
       </section>
@@ -149,14 +161,14 @@ const Index = () => {
           dataKey="power"
           title="Power vs Time"
           unit="W"
-          color="hsl(45 100% 50%)"
+          color="hsl(38 92% 50%)"
         />
         <EnergyChart
           data={dataHistory}
           dataKey="currentLoss"
           title="Power Loss vs Time"
           unit="W"
-          color="hsl(0 75% 55%)"
+          color="hsl(0 72% 51%)"
         />
       </section>
 
