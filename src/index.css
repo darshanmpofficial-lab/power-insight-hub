@@ -8,49 +8,44 @@
 
 @layer base {
   :root {
-    --background: 220 20% 10%;
-    --foreground: 210 20% 95%;
+    --background: 0 0% 98%;
+    --foreground: 220 15% 20%;
 
-    --card: 220 18% 14%;
-    --card-foreground: 210 20% 95%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 20%;
 
-    --popover: 220 18% 14%;
-    --popover-foreground: 210 20% 95%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 20%;
 
-    --primary: 195 100% 50%;
-    --primary-foreground: 220 20% 10%;
+    --primary: 220 90% 56%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 15% 20%;
-    --secondary-foreground: 210 20% 95%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 15% 20%;
 
-    --muted: 220 15% 18%;
-    --muted-foreground: 210 10% 60%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 10% 50%;
 
-    --accent: 145 80% 45%;
-    --accent-foreground: 220 20% 10%;
+    --accent: 145 65% 42%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 75% 55%;
-    --destructive-foreground: 210 20% 95%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
 
-    --warning: 45 100% 50%;
-    --warning-foreground: 220 20% 10%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
 
-    --border: 220 15% 22%;
-    --input: 220 15% 18%;
-    --ring: 195 100% 50%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 220 90% 56%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
-    --chart-1: 195 100% 50%;
-    --chart-2: 145 80% 45%;
-    --chart-3: 45 100% 50%;
-    --chart-4: 280 80% 60%;
-    --chart-5: 0 75% 55%;
-
-    --glow-primary: 0 0 20px hsl(195 100% 50% / 0.4);
-    --glow-accent: 0 0 20px hsl(145 80% 45% / 0.4);
-    --glow-warning: 0 0 20px hsl(45 100% 50% / 0.4);
-    --glow-destructive: 0 0 20px hsl(0 75% 55% / 0.4);
+    --chart-1: 220 90% 56%;
+    --chart-2: 145 65% 42%;
+    --chart-3: 38 92% 50%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 0 72% 51%;
 
     --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
     --font-mono: 'Space Mono', ui-monospace, monospace;
@@ -69,34 +64,31 @@
 
 @layer components {
   .metric-card {
-    @apply relative overflow-hidden rounded-lg border border-border bg-card p-4 transition-all duration-300;
+    @apply relative overflow-hidden rounded-lg border border-border bg-card p-4 transition-all duration-200 shadow-sm;
   }
 
   .metric-card:hover {
-    @apply border-primary/50;
-    box-shadow: var(--glow-primary);
+    @apply border-primary/30 shadow-md;
   }
 
   .metric-value {
-    @apply font-mono text-3xl font-bold tracking-tight;
+    @apply font-mono text-2xl font-semibold tracking-tight;
   }
 
   .metric-label {
-    @apply text-sm text-muted-foreground uppercase tracking-wider;
+    @apply text-xs text-muted-foreground uppercase tracking-wider font-medium;
   }
 
   .status-online {
     @apply bg-accent text-accent-foreground;
-    box-shadow: var(--glow-accent);
   }
 
   .status-offline {
     @apply bg-destructive text-destructive-foreground;
-    box-shadow: var(--glow-destructive);
   }
 
   .chart-container {
-    @apply rounded-lg border border-border bg-card p-4;
+    @apply rounded-lg border border-border bg-card p-4 shadow-sm;
   }
 
   .pulse-glow {
@@ -108,40 +100,21 @@
       opacity: 1;
     }
     50% {
-      opacity: 0.6;
-    }
-  }
-
-  .data-flow {
-    animation: data-flow 1s ease-in-out infinite;
-  }
-
-  @keyframes data-flow {
-    0% {
-      opacity: 0.5;
-      transform: translateY(2px);
-    }
-    50% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    100% {
-      opacity: 0.5;
-      transform: translateY(2px);
+      opacity: 0.7;
     }
   }
 }
 
 @layer utilities {
-  .text-glow-primary {
-    text-shadow: 0 0 10px hsl(195 100% 50% / 0.6);
+  .text-primary-emphasis {
+    @apply text-primary font-semibold;
   }
 
-  .text-glow-accent {
-    text-shadow: 0 0 10px hsl(145 80% 45% / 0.6);
+  .text-accent-emphasis {
+    @apply text-accent font-semibold;
   }
 
-  .text-glow-warning {
-    text-shadow: 0 0 10px hsl(45 100% 50% / 0.6);
+  .text-warning-emphasis {
+    @apply text-warning font-semibold;
   }
 }
