@@ -1,4 +1,4 @@
-# Welcome to your Lovable project
+# Welcome to Egde Energy AI based project
 
 ## Project info
 
